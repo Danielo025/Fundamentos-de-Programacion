@@ -8,37 +8,57 @@ namespace ex03_VentasBarrioOriginal
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Programa para identificar Barrio con mejor tendero");
 
             //Aqui inicializamos el nombre de los barrios
-            string[] nombresBarrios = new string[5];
+            string[] nombresBarrios = { "Manrique", "Moravia", "Poblado", "Laureles", "Aranjuez" };
 
-            //Aqui leemos los nombres de los barrios
-            int contadorBarrio = 0;
-            while (contadorBarrio < nombresBarrios.Length)
+            ////Aqui leemos los nombres de los barrios
+            //int contadorBarrio = 0;
+            //while (contadorBarrio < nombresBarrios.Length)
+            //{
+            //    Console.Write($"\nIngresa el nombre del barrio No. {contadorBarrio + 1}: ");
+            //    nombresBarrios[contadorBarrio] = Console.ReadLine();
+
+            //    //La longitud del nombre ingresado debe ser mayor que cero
+            //    if (nombresBarrios[contadorBarrio].Length > 0)
+            //        contadorBarrio++;
+            //    else
+            //        Console.WriteLine("No se ha ingresado un valor de barrio correcto. Intenta nuevamente!");
+            //}
+
+            //Aqui inicializamos el arreglo de pedidos
+            Pedido[] losPedidos = new Pedido[10];
+            int contadorPedidos = 0;
+
+            while (contadorPedidos < losPedidos.Length)
             {
-                Console.Write($"\nIngresa el nombre del barrio No. {contadorBarrio + 1}: ");
-                nombresBarrios[contadorBarrio] = Console.ReadLine();
+                Console.Write($"\nIngresa el nombre del pedido No. {contadorPedidos + 1}: ");
+                losPedidos[contadorPedidos] = new Pedido();
+                Console.Write($"\nBarrio: ");
+                losPedidos[contadorPedidos].Barrio = Console.ReadLine();
+                Console.Write($"Cantidad de Galletas: ");
+                losPedidos[contadorPedidos].CantidadGalletas = int.Parse(Console.ReadLine());
 
                 //La longitud del nombre ingresado debe ser mayor que cero
-                if (nombresBarrios[contadorBarrio].Length > 0)
-                    contadorBarrio++;
+                if (losPedidos[contadorPedidos].Barrio.Length > 0)
+                    contadorPedidos++;
                 else
                     Console.WriteLine("No se ha ingresado un valor de barrio correcto. Intenta nuevamente!");
             }
 
-            //Aqui inicializamos el arreglo de pedidos
-            Pedido[] losPedidos = new Pedido[100];
-            Random aleatorio = new Random();
+            ////Aqui inicializamos el arreglo de pedidos
+            //Pedido[] losPedidos = new Pedido[5];
+            //Random aleatorio = new Random();
 
-            for (int i = 0; i < losPedidos.Length; i++)
-            {
-                losPedidos[i] = new Pedido();
-                losPedidos[i].Barrio = nombresBarrios[aleatorio.Next(nombresBarrios.Length)];
-                losPedidos[i].CantidadGalletas = aleatorio.Next(10, 101);
-            }
+            //for (int i = 0; i < losPedidos.Length; i++)
+            //{
+            //    losPedidos[i] = new Pedido();
+            //    losPedidos[i].Barrio = nombresBarrios[aleatorio.Next(nombresBarrios.Length)];
+            //    losPedidos[i].CantidadGalletas = aleatorio.Next(10, 101);
+            //}
 
             //Aqui calculamos el total de galletas por cada barrio
             int[] totalGalletasBarrio = TotalizaGalletasBarrio(losPedidos, nombresBarrios);
@@ -112,7 +132,7 @@ namespace ex03_VentasBarrioOriginal
         /// <param name="arregloPedidos">Los pedidos realizados por los barrios</param>
         /// <param name="arregloBarrios">Los nombres de los barrios</param>
         /// <returns>El total de pedidos por barrio</returns>
-        static int[] TotalizaPedidosBarrio(Pedido[] arregloPedidos, string[] arregloBarrios)
+        public static int[] TotalizaPedidosBarrio(Pedido[] arregloPedidos, string[] arregloBarrios)
         {
             int[] totalPedidosBarrio = new int[arregloBarrios.Length];
 
@@ -139,7 +159,7 @@ namespace ex03_VentasBarrioOriginal
         /// <param name="arregloPedidos">Los pedidos realizados por los barrios</param>
         /// <param name="arregloBarrios">Los nombres de los barrios</param>
         /// <returns>El total de galletas por barrio</returns>
-        static int[] TotalizaGalletasBarrio(Pedido[] arregloPedidos, string[] arregloBarrios)
+        public static int[] TotalizaGalletasBarrio(Pedido[] arregloPedidos, string[] arregloBarrios)
         {
             int[] totalGalletasBarrio = new int[arregloBarrios.Length];
 
